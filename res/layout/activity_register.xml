@@ -3,47 +3,60 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
-
-    <LinearLayout
+    android:orientation="vertical">
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/white"
         android:orientation="vertical" >
 
-        <fragment
-            android:id="@+id/input_account"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            class="inputcells.SimpleTextInputcellFragment"
-            tools:layout="@layout/fragment_inputcell_simpleted" />
+            android:background="@android:color/white"
+            android:orientation="vertical" >
 
-        <fragment
-            android:id="@+id/input_password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            class="inputcells.SimpleTextInputcellFragment"
-            tools:layout="@layout/fragment_inputcell_simpleted" />
+            <fragment
+                android:id="@+id/input_account"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                class="inputcells.SimpleTextInputcellFragment"
+                tools:layout="@layout/fragment_inputcell_simpleted" />
 
-        <fragment
-            android:id="@+id/input_password_repeat"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            class="inputcells.SimpleTextInputcellFragment"
-            tools:layout="@layout/fragment_inputcell_simpleted" />
+            <fragment
+                android:id="@+id/input_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                class="inputcells.SimpleTextInputcellFragment"
+                tools:layout="@layout/fragment_inputcell_simpleted" />
 
-        <fragment
-            android:id="@+id/input_img"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            class="inputcells.PictureInputCellFragment"
-            tools:layout="@layout/fragment_inputcell_picture" />
+            <fragment
+                android:id="@+id/input_password_repeat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                class="inputcells.SimpleTextInputcellFragment"
+                tools:layout="@layout/fragment_inputcell_simpleted" />
 
-        <Button
-            android:id="@+id/btn_submit"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="注册" />
-    </LinearLayout>
+            <fragment
+                android:id="@+id/input_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                class="inputcells.SimpleTextInputcellFragment"
+                tools:layout="@layout/fragment_inputcell_simpleted" />
+
+            <fragment
+                android:id="@+id/input_img"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                class="inputcells.PictureInputCellFragment"
+                tools:layout="@layout/fragment_inputcell_picture" />
+
+            <Button
+                android:id="@+id/btn_submit"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="注册" />
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

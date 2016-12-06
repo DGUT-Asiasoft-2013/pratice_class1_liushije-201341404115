@@ -1,10 +1,10 @@
 package inputcells;
-
-import java.io.FileNotFoundException;
-import java.io.IOException;
+/**
+ * @author 刘世杰
+ * 添加图片的的基础控件
+ */
 
 import com.example.helloworld.R;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -13,7 +13,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +21,7 @@ import android.widget.TextView;
 
 public class PictureInputCellFragment extends BaseInputCellFragment {
 
+	//先定义空视图
 	private static final int REQUESTCODE_ALBUM = 1;
 	private static final int REQUESTCODE_CAMERA = 2;
 	ImageView imageView;
@@ -31,6 +31,8 @@ public class PictureInputCellFragment extends BaseInputCellFragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.fragment_inputcell_picture, container);
+		
+		//然后在此处指向layout中的控件
 		imageView = (ImageView) view.findViewById(R.id.image);
 		labelText = (TextView) view.findViewById(R.id.label);
 		hintText = (TextView) view.findViewById(R.id.hint);
@@ -43,7 +45,7 @@ public class PictureInputCellFragment extends BaseInputCellFragment {
 		});
 		return view;
 	}
-
+			//实现点击事件
 	void onImagevViewClick() {
 		String[] items = { "拍照", "相册" };
 		new AlertDialog.Builder(getActivity()).setTitle(labelText.getText()).setItems(items, new OnClickListener() {
@@ -66,6 +68,7 @@ public class PictureInputCellFragment extends BaseInputCellFragment {
 
 	}
 
+	//下面为上面所用到的方法的定义
 	void pickFrmCamera() {
 		Intent itnt = new Intent(Intent.ACTION_GET_CONTENT);
 		itnt.setType("image/*");
