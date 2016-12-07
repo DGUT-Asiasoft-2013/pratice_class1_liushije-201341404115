@@ -3,15 +3,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="${relativePackage}.${activityClass}" 
-    android:background="#1F5B8D"
+    android:background="@drawable/bg"
     >
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="东莞理工Android实训" 
-        android:textColor="@android:color/white"
-        android:textSize="16sp"
+        android:textColor="@android:color/holo_orange_light"
+        android:textSize="23sp"
         android:layout_marginTop="64dp"
         android:layout_centerHorizontal="true"/>
     
