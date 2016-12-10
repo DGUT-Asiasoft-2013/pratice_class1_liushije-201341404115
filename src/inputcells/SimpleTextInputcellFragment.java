@@ -36,6 +36,9 @@ public class SimpleTextInputcellFragment extends BaseInputCellFragment {
 	public void setHintText(String hintText){
 		edit.setHint(hintText);
 	}
+    public String getText() {
+        return edit.getText().toString();
+    }
 	//此处为设定输入框内的内容是否为密码类型
 	public void setEditText(boolean isPassword){
 		if(isPassword){

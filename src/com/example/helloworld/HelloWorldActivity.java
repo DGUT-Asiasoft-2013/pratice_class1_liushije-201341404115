@@ -2,9 +2,14 @@ package com.example.helloworld;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
 import fragments.MainTabbarFragment;
+import fragments.MainTabbarFragment.OnNewClickedListener;
 import fragments.MainTabbarFragment.OnTabSelectedListener;
+import inputcells.SimpleTextInputcellFragment;
 import page.FeedListFragment;
 import page.MyProfileFragment;
 import page.NoteListFragment;
@@ -18,6 +23,7 @@ public class HelloWorldActivity extends Activity {
 	NoteListFragment contentNoteList = new NoteListFragment();
 	SearchPageFragment contentSearchPage = new SearchPageFragment();
 	MyProfileFragment contentMyProfile = new MyProfileFragment();
+	SimpleTextInputcellFragment frgsent;
 
 	MainTabbarFragment tabbar;
 
@@ -35,6 +41,15 @@ public class HelloWorldActivity extends Activity {
 				changeContentFragment(index);
 			}
 		});
+
+		tabbar.setOnNewClickedListener(new OnNewClickedListener() {
+
+			@Override
+			public void onNewClicked() {
+				bringUpEditor();
+			}
+		});
+
 	}
 
 	@Override
@@ -69,5 +84,10 @@ public class HelloWorldActivity extends Activity {
 			return;
 
 		getFragmentManager().beginTransaction().replace(R.id.content, newFrag).commit();
+	}
+
+	void bringUpEditor() {
+		Intent itnt = new Intent(this, SendMessageActivity.class);
+		startActivity(itnt);
 	}
 }
