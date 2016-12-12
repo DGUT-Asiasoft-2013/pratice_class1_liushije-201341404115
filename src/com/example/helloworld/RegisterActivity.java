@@ -106,7 +106,7 @@ public class RegisterActivity extends Activity {
 		}
 
 		// 构造发送请求
-		Request request = new Request.Builder().url("http://172.27.0.39:8080/membercenter/api/register")
+		Request request = new Request.Builder().url("http://172.27.0.56:8080/membercenter/api/register")
 				.method("post", null).post(requestBody.build()).build();
 
 		final ProgressDialog progressDialog = new ProgressDialog(RegisterActivity.this);
