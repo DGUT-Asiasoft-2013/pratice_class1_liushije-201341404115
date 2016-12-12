@@ -20,6 +20,7 @@ public class SendMessageActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				finish();
+				overridePendingTransition(R.anim.none, R.anim.slide_out_bottom);
 			}
 		});
 	}
