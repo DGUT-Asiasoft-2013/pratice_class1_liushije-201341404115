@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<translate xmlns:android="http://schemas.android.com/apk/res/android"
-    android:duration="@android:integer/config_shortAnimTime"
-    android:fromYDelta="100%"
-    android:toYDelta="0" >
+<set xmlns:android="http://schemas.android.com/apk/res/android" >
 
-</translate>
+    <objectAnimator
+        android:duration="@android:integer/config_shortAnimTime"
+        android:propertyName="alpha"
+        android:valueFrom="0"
+        android:valueTo="1" >
+    </objectAnimator>
+    <objectAnimator
+        android:duration="@android:integer/config_shortAnimTime"
+        android:propertyName="x"
+        android:valueFrom="-160"
+        android:valueTo="0" >
+    </objectAnimator>
+
+</set>

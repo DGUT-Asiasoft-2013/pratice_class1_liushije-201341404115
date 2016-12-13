@@ -1,7 +1,7 @@
 package fragments;
 
 import com.example.helloworld.R;
-import com.example.helloworld.SendMessageActivity;
+import com.example.helloworld.AddNewArticleActivity;
 
 import android.app.Fragment;
 import android.content.Intent;

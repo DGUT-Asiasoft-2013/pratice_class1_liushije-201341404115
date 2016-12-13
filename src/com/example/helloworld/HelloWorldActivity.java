@@ -87,7 +87,7 @@ public class HelloWorldActivity extends Activity {
 	}
 
 	void bringUpEditor() {
-		Intent itnt = new Intent(this, SendMessageActivity.class);
+		Intent itnt = new Intent(this, AddNewArticleActivity.class);
 		startActivity(itnt);
 	}
 }

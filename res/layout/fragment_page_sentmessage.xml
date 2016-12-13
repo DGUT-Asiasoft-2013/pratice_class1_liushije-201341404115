@@ -1,43 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/sentbg"
-    android:orientation="vertical" >
+    android:background="@drawable/sentbg" >
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical" >
 
+        <fragment
+            android:id="@+id/input_add"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            class="com.example.abc.fragments.inputcells.SimpleTextInputCellFragment"
+            tools:layout="@layout/fragment_inputcell_simpletext" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical"
+            android:padding="8dp" >
 
             <TextView
-                android:id="@+id/label"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="输入项目"
-                android:textColor="@android:color/black"
-                android:textSize="12sp" />
+                android:text="文章内容 " />
 
             <EditText
-                android:id="@+id/edit"
+                android:id="@+id/input_main_text"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:hint="请输入内容" />
+                android:layout_height="300dp"
+                android:ems="10"
+                android:gravity="top"
+                android:inputType="textMultiLine" >
+
+                <requestFocus />
+            </EditText>
 
             <Button
-                android:id="@+id/bt_sent"
+                android:id="@+id/btn_send"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_gravity="bottom"
-                android:text="Sent"
-                android:textColor="@android:color/white" />
+                android:layout_height="wrap_content"
+                android:text="SUBMIT" />
         </LinearLayout>
-    </ScrollView>
+    </LinearLayout>
 
-</LinearLayout>
+</FrameLayout>

@@ -34,7 +34,7 @@
         </activity>        
         <activity android:name="com.example.helloworld.FeedContentActivity" >
         </activity>
-        <activity android:name="com.example.helloworld.SendMessageActivity" >
+        <activity android:name="com.example.helloworld.AddNewArticleActivity" >
         </activity>
     </application>
 

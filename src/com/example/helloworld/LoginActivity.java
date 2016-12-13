@@ -78,12 +78,16 @@ public class LoginActivity extends Activity {
 	}
 
 	void goLogin() {
+		String account = fragAccount.getText();
+		String password = fragPassword.getText();
+		password = MD5.getMD5(password);
+
 		OkHttpClient client = Server.getSharedClient();
+		MultipartBody.Builder requestBodyBuilder = new MultipartBody.Builder().addFormDataPart("account", account)
+				.addFormDataPart("passwordHash", password);
 
-		MultipartBody requestBody = new MultipartBody.Builder().addFormDataPart("account", fragAccount.getText())
-				.addFormDataPart("passwordHash", MD5.getMD5(fragPassword.getText())).build();
-
-		Request request = Server.requestBuilderWithApi("login").method("post", null).post(requestBody).build();
+		Request request = Server.requestBuilderWithApi("login").method("post", null).post(requestBodyBuilder.build())
+				.build();
 
 		final ProgressDialog dlg = new ProgressDialog(this);
 		dlg.setCancelable(false);
@@ -93,36 +97,29 @@ public class LoginActivity extends Activity {
 
 		client.newCall(request).enqueue(new Callback() {
 
-			public void onResponse(Call arg0, Response arg1) throws IOException {
-
-				final String responseString = arg1.body().string();
-				ObjectMapper mapper = new ObjectMapper();
-				final User user = mapper.readValue(responseString, User.class);
-
+			@Override
+			public void onResponse(final Call arg0, final Response arg1) throws IOException {
 				runOnUiThread(new Runnable() {
 					public void run() {
-						dlg.dismiss();
-						new AlertDialog.Builder(LoginActivity.this).setMessage("Hello," + user.getName())
-								// .setMessage(responseString)
-								.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-									@Override
-									public void onClick(DialogInterface dialog, int which) {
-										Intent itnt = new Intent(LoginActivity.this, HelloWorldActivity.class);
-										startActivity(itnt);
-									}
-								}).show();
+						try {
+							dlg.dismiss();
+							ObjectMapper mapper = new ObjectMapper();
+							final User user = mapper.readValue(arg1.body().string(), User.class);
+
+							LoginActivity.this.onResponse(arg0, user.getAccount());
+
+						} catch (IOException e) {
+							e.printStackTrace();
+							LoginActivity.this.onFailture(arg0, e);
+						}
 					}
 				});
 			}
 
-			public void onFailure(Call arg0, final IOException arg1) {
-				runOnUiThread(new Runnable() {
-					public void run() {
-						dlg.dismiss();
-
-						Toast.makeText(LoginActivity.this, arg1.getLocalizedMessage(), Toast.LENGTH_LONG).show();
-					}
-				});
+			@Override
+			public void onFailure(Call arg0, IOException arg1) {
+				dlg.dismiss();
+				onFailture(arg0, arg1);
 			}
 		});
 	}
@@ -131,4 +128,24 @@ public class LoginActivity extends Activity {
 		Intent itnt = new Intent(this, PasswordRecoverActivity.class);
 		startActivity(itnt);
 	}
+
+	void onResponse(Call arg0, String responseBody) {
+		new AlertDialog.Builder(this).setTitle("µÇÂ½³É¹¦").setMessage(responseBody)
+				.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+
+						Intent itnt = new Intent(LoginActivity.this, HelloWorldActivity.class);
+						startActivity(itnt);
+						finish();
+					}
+				}).show();
+	}
+
+	void onFailture(Call arg0, Exception arg1) {
+		new AlertDialog.Builder(this).setTitle("µÇÂ½Ê§°Ü").setMessage(arg1.getLocalizedMessage())
+				.setNegativeButton("OK", null).show();
+	}
+
 }
