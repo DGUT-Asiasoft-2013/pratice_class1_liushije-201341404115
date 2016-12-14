@@ -2,6 +2,7 @@ package com.example.helloworld;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -13,9 +14,13 @@ import android.widget.Toast;
 public class FeedContentActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
+		
+		setContentView(R.layout.activity_feed_content);
+		
 		String text = getIntent().getStringExtra("text");
-		Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
+		
+		TextView textView = (TextView) findViewById(R.id.text);
+		textView.setText(text);
 	}
 }

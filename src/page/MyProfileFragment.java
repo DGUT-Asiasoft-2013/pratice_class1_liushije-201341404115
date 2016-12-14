@@ -13,7 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import api.Server;
+import api.entity.Server;
 import api.entity.User;
 import fragments.AvatarView;
 import okhttp3.Call;

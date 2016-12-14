@@ -1,4 +1,4 @@
-package api;
+package api.entity;
 
 import java.net.CookieManager;
 import java.net.CookiePolicy;

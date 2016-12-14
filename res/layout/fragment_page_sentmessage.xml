@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/sentbg" >
+     >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,8 +14,8 @@
             android:id="@+id/input_add"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            class="com.example.abc.fragments.inputcells.SimpleTextInputCellFragment"
-            tools:layout="@layout/fragment_inputcell_simpletext" />
+            class="inputcells.SimpleTextInputcellFragment"
+            tools:layout="@layout/fragment_inputcell_simpleted" />
 
         <LinearLayout
             android:layout_width="match_parent"

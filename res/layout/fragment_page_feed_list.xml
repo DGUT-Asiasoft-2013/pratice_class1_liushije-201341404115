@@ -14,8 +14,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:gravity="center"
-            android:text="FEED" />
+            android:text="文章列表"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
 
         <View
             android:layout_width="match_parent"

@@ -1,40 +1,30 @@
 package fragments;
 
 import com.example.helloworld.R;
-import com.example.helloworld.AddNewArticleActivity;
 
 import android.app.Fragment;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.View.OnClickListener;
+import android.widget.Button;
 
 public class MainTabbarFragment extends Fragment {
 
-	View btFree, tabFeeds, tabNotes, tabSearch, tabMe;
+	View btnNew, tabFeeds, tabNotes, tabSearch, tabMe;
 	View[] tabs;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.fragment_main_tabbar, null);
 
-		btFree = view.findViewById(R.id.bt_free);
+		btnNew = view.findViewById(R.id.bt_free);
 		tabFeeds = view.findViewById(R.id.tab_Feeds);
 		tabNotes = view.findViewById(R.id.tab_Notes);
 		tabSearch = view.findViewById(R.id.tab_Search);
 		tabMe = view.findViewById(R.id.tab_Me);
 
 		tabs = new View[] { tabFeeds, tabNotes, tabSearch, tabMe };
-
-		btFree.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				onNewClicked();
-			}
-		});
 
 		for (final View tab : tabs) {
 			tab.setOnClickListener(new View.OnClickListener() {
@@ -45,6 +35,15 @@ public class MainTabbarFragment extends Fragment {
 				}
 			});
 		}
+
+		btnNew.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				onNewClicked();
+			}
+		});
+
 		return view;
 	}
 
@@ -64,9 +63,18 @@ public class MainTabbarFragment extends Fragment {
 		}
 	}
 
-	void onTabClicked(View tab) {
+	public int getSelectedIndex() {
+		for (int i = 0; i < tabs.length; i++) {
+			if (tabs[i].isSelected())
+				return i;
+		}
 
+		return -1;
+	}
+
+	void onTabClicked(View tab) {
 		int selectedIndex = -1;
+
 		for (int i = 0; i < tabs.length; i++) {
 			View otherTab = tabs[i];
 			if (otherTab == tab) {

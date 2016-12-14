@@ -7,7 +7,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
-import api.Server;
+import api.entity.Server;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.MultipartBody;

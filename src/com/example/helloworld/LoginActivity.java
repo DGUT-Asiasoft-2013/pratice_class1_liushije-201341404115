@@ -10,9 +10,10 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
-import api.Server;
+import api.entity.Server;
 import api.entity.User;
 import inputcells.SimpleTextInputcellFragment;
 import okhttp3.Call;
@@ -99,21 +100,27 @@ public class LoginActivity extends Activity {
 
 			@Override
 			public void onResponse(final Call arg0, final Response arg1) throws IOException {
-				runOnUiThread(new Runnable() {
-					public void run() {
-						try {
+				try {
+					ObjectMapper mapper = new ObjectMapper();
+					String response=arg1.body().string();
+					final User user = mapper.readValue(response, User.class);
+					runOnUiThread(new Runnable() {
+						public void run() {
+
 							dlg.dismiss();
-							ObjectMapper mapper = new ObjectMapper();
-							final User user = mapper.readValue(arg1.body().string(), User.class);
 
 							LoginActivity.this.onResponse(arg0, user.getAccount());
 
-						} catch (IOException e) {
-							e.printStackTrace();
+						}
+					});
+				} catch (final IOException e) {
+					e.printStackTrace();
+					runOnUiThread(new Runnable() {
+						public void run() {
 							LoginActivity.this.onFailture(arg0, e);
 						}
-					}
-				});
+					});
+				}
 			}
 
 			@Override

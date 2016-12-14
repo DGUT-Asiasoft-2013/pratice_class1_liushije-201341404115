@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-import api.Server;
+import api.entity.Server;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.MultipartBody;
